@@ -10,7 +10,6 @@ function Products(props: Props) {
   console.log(productData, "from products");
   return (
     <div>
-      <h1>Todo</h1>
       <div className="grid grid-cols-6 gap-2  ">
         {productData.map((product: any, index: any) => (
           <>

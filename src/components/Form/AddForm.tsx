@@ -17,36 +17,6 @@ const AddProductForm = (props: Props) => {
   });
 
   const [file, setFile] = useState(null);
-  const [fileDataURL, setFileDataURL] = useState(null);
-
-  const changeHandler = (e: any) => {
-    const file = e.target.files[0];
-    if (!file.type.match(imageMimeType)) {
-      alert("Image mime type is not valid");
-      return;
-    }
-    setFile(file);
-  };
-  useEffect(() => {
-    let fileReader: any,
-      isCancel = false;
-    if (file) {
-      fileReader = new FileReader();
-      fileReader.onload = (e: any) => {
-        const { result } = e.target;
-        if (result && !isCancel) {
-          setFileDataURL(result);
-        }
-      };
-      fileReader.readAsDataURL(file);
-    }
-    return () => {
-      isCancel = true;
-      if (fileReader && fileReader.readyState === 1) {
-        fileReader.abort();
-      }
-    };
-  }, [file]);
 
   const databaseRef: any = collection(database, "products");
 
@@ -123,30 +93,6 @@ const AddProductForm = (props: Props) => {
         />
         <Button type="submit">Add Product</Button>
       </VStack>
-
-      <>
-        <form>
-          <p>
-            <label htmlFor="image"> Browse images </label>
-            <input
-              type="file"
-              id="image"
-              accept=".png, .jpg, .jpeg"
-              onChange={changeHandler}
-            />
-          </p>
-          <p>
-            <Button type="submit" aria-label="Upload">
-              UpLoad
-            </Button>
-          </p>
-        </form>
-        {fileDataURL ? (
-          <p className="img-preview-wrapper">
-            {<img src={fileDataURL} alt="preview" />}
-          </p>
-        ) : null}
-      </>
     </>
   );
 };

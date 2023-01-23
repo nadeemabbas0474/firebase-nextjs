@@ -4,7 +4,6 @@ import { GoSignIn } from "react-icons/go";
 import { useRouter } from "next/router";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Toaster } from "react-hot-toast";
 import { useAuth } from "../context/AuthContext";
 
 function Login() {

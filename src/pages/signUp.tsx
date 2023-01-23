@@ -3,6 +3,7 @@ import Button from "@mui/material/Button";
 import { useAuth } from "../context/AuthContext";
 import { TextField } from "@mui/material";
 import { useRouter } from "next/router";
+import { toast } from "react-toastify";
 
 function SignUp() {
   const router = useRouter()
@@ -17,10 +18,19 @@ function SignUp() {
 
     try {
       await singup(data.email, data.password);
-      alert("SignUp Successfull")
+      toast("🦄 SignUp Successfull ", {
+        position: "top-left",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
       router.push("/login")
     } catch (err) {
     }
+    console.log(data, "data data")
   };
   return (
     <div className="flex flex-col items-center justify-center space-y-4">
